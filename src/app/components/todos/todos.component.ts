@@ -18,9 +18,15 @@ export class TodosComponent implements OnInit {
     });
   }
   deleteTodo(todo: Todo) {
-    console.log("delete works");\
+    console.log("delete works");
     //this is really cool because it solves the client side without a refresh from the server, still need to hit server//
     this.todos = this.todos.filter(td => td.id !== todo.id);
     this.todoService.deleteTodo(todo).subscribe();
+  }
+
+  addTodo(todo: Todo) {
+    this.todoService.addTodo(todo).subscribe(todo => {
+      this.todos.push(todo);
+    });
   }
 }
